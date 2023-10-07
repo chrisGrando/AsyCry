@@ -27,6 +27,8 @@
 
 package AsyCry;
 
+import AsyCry.UI.AppUI;
+
 /**
  * Classe destinada para inicialização básica.
  * @author chrisGrando
@@ -34,7 +36,8 @@ package AsyCry;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        AppUI app = new AppUI();
+        app.run();
     }
     
 }
