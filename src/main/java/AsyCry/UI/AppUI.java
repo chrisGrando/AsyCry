@@ -2,7 +2,10 @@ package AsyCry.UI;
 
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * Classe destinada ao front-end da aplicação.
@@ -23,6 +26,7 @@ public class AppUI extends JFrame {
     public void run() {
         setAppIcon();
         setAppFont();
+        setCurrentDirectory();
         setVisible(true);
     }
     
@@ -80,6 +84,39 @@ public class AppUI extends JFrame {
         jTextFieldPrivateKey.setFont(cousine.deriveFont(SIZE));
         jTextFieldPublicKey.setFont(cousine.deriveFont(SIZE));
         jTextAreaConsole.setFont(cousine.deriveFont(SIZE + 1f));
+    }
+    
+    /**
+     * Configura o diretório atual como local padrão para os componentes
+     * "jFileChooser".
+     */
+    private void setCurrentDirectory() {
+        final String PATH = System.getProperty("user.dir");
+        final File DIR = new File(PATH);
+        
+        jFileChooserInputFile.setCurrentDirectory(DIR);
+        jFileChooserOpenKey.setCurrentDirectory(DIR);
+        jFileChooserOutputFile.setCurrentDirectory(DIR);
+        jFileChooserSaveKey.setCurrentDirectory(DIR);
+    }
+    
+    /**
+     * Exibe janela de aviso.
+     * @param msg
+     * A mensagem para exibir na tela.
+     */
+    private void showWarning(String msg) {
+        //Abre janela de aviso
+        JOptionPane.showOptionDialog(
+            this,
+            msg,
+            "AVISO",
+            JOptionPane.DEFAULT_OPTION,
+            JOptionPane.INFORMATION_MESSAGE,
+            null,
+            null,
+            1
+        );
     }
 
     /**
@@ -163,12 +200,32 @@ public class AppUI extends JFrame {
         jLabelKey1.setPreferredSize(new java.awt.Dimension(33, 22));
 
         jButtonOpenFile1.setText("...");
+        jButtonOpenFile1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOpenFile1Clicked(evt);
+            }
+        });
 
         jButtonSaveFile1.setText("...");
+        jButtonSaveFile1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveFile1Clicked(evt);
+            }
+        });
 
         jButtonOpenKey1.setText("...");
+        jButtonOpenKey1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOpenKey1Clicked(evt);
+            }
+        });
 
         jButtonCrypto.setText("CRIPTOGRAFAR");
+        jButtonCrypto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCryptoClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelCryptoLayout = new javax.swing.GroupLayout(jPanelCrypto);
         jPanelCrypto.setLayout(jPanelCryptoLayout);
@@ -232,12 +289,32 @@ public class AppUI extends JFrame {
         jLabelKey2.setPreferredSize(new java.awt.Dimension(33, 22));
 
         jButtonOpenFile2.setText("...");
+        jButtonOpenFile2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOpenFile2Clicked(evt);
+            }
+        });
 
         jButtonSaveFile2.setText("...");
+        jButtonSaveFile2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveFile2Clicked(evt);
+            }
+        });
 
         jButtonOpenKey2.setText("...");
+        jButtonOpenKey2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOpenKey2Clicked(evt);
+            }
+        });
 
         jButtonDecrypto.setText("DECRIPTOGRAFAR");
+        jButtonDecrypto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDecryptoClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelDecryptoLayout = new javax.swing.GroupLayout(jPanelDecrypto);
         jPanelDecrypto.setLayout(jPanelDecryptoLayout);
@@ -298,10 +375,25 @@ public class AppUI extends JFrame {
         jLabelPrivateKey.setText("Chave Privada");
 
         jButtonSaveKey1.setText("...");
+        jButtonSaveKey1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveKey1Clicked(evt);
+            }
+        });
 
         jButtonSaveKey2.setText("...");
+        jButtonSaveKey2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveKey2Clicked(evt);
+            }
+        });
 
         jButtonGenerate.setText("GERAR CHAVES");
+        jButtonGenerate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGenerateClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelKeysLayout = new javax.swing.GroupLayout(jPanelKeys);
         jPanelKeys.setLayout(jPanelKeysLayout);
@@ -394,6 +486,141 @@ public class AppUI extends JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    //Botão de abrir arquivo para criptografar
+    private void jButtonOpenFile1Clicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenFile1Clicked
+        System.out.println(evt.paramString());
+        int value = jFileChooserInputFile.showOpenDialog(this);
+        
+        if(value == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooserInputFile.getSelectedFile();
+            jTextFieldInputFile1.setText(file.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButtonOpenFile1Clicked
+
+    //Botão de salvar arquivo criptografado
+    private void jButtonSaveFile1Clicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveFile1Clicked
+        System.out.println(evt.paramString());
+        int value = jFileChooserOutputFile.showSaveDialog(this);
+        
+        if(value == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooserOutputFile.getSelectedFile();
+            jTextFieldOutputFile1.setText(file.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButtonSaveFile1Clicked
+
+    //Botão de abrir arquivo da chave pública
+    private void jButtonOpenKey1Clicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenKey1Clicked
+        System.out.println(evt.paramString());
+        int value = jFileChooserOpenKey.showOpenDialog(this);
+        
+        if(value == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooserOpenKey.getSelectedFile();
+            jTextFieldKey1.setText(file.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButtonOpenKey1Clicked
+
+    //Botão de criptografar arquivo
+    private void jButtonCryptoClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCryptoClicked
+        System.out.println(evt.paramString());
+        String oldFile = jTextFieldInputFile1.getText();
+        String newFile = jTextFieldOutputFile1.getText();
+        String key = jTextFieldKey1.getText();
+        
+        //Aborta se um dos campos estiver em branco
+        if(oldFile.isBlank() || newFile.isBlank() || key.isBlank()) {
+            showWarning("Favor preencher todos os campos antes de continuar...");
+            return;
+        }
+        
+        //TODO: Invocar criptografia aqui
+    }//GEN-LAST:event_jButtonCryptoClicked
+
+    //Botão de abrir arquivo para decriptografar
+    private void jButtonOpenFile2Clicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenFile2Clicked
+        System.out.println(evt.paramString());
+        int value = jFileChooserInputFile.showOpenDialog(this);
+        
+        if(value == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooserInputFile.getSelectedFile();
+            jTextFieldInputFile2.setText(file.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButtonOpenFile2Clicked
+
+    //Botão de salvar arquivo decriptografado
+    private void jButtonSaveFile2Clicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveFile2Clicked
+        System.out.println(evt.paramString());
+        int value = jFileChooserOutputFile.showSaveDialog(this);
+        
+        if(value == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooserOutputFile.getSelectedFile();
+            jTextFieldOutputFile2.setText(file.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButtonSaveFile2Clicked
+
+    //Botão de abrir arquivo da chave privada
+    private void jButtonOpenKey2Clicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOpenKey2Clicked
+        System.out.println(evt.paramString());
+        int value = jFileChooserOpenKey.showOpenDialog(this);
+        
+        if(value == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooserOpenKey.getSelectedFile();
+            jTextFieldKey2.setText(file.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButtonOpenKey2Clicked
+
+    //Botão de decriptografar arquivo
+    private void jButtonDecryptoClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDecryptoClicked
+        System.out.println(evt.paramString());
+        String oldFile = jTextFieldInputFile2.getText();
+        String newFile = jTextFieldOutputFile2.getText();
+        String key = jTextFieldKey2.getText();
+        
+        //Aborta se um dos campos estiver em branco
+        if(oldFile.isBlank() || newFile.isBlank() || key.isBlank()) {
+            showWarning("Favor preencher todos os campos antes de continuar...");
+            return;
+        }
+        
+        //TODO: Invocar decriptografia aqui
+    }//GEN-LAST:event_jButtonDecryptoClicked
+
+    //Botão de salvar arquivo da chave pública
+    private void jButtonSaveKey1Clicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveKey1Clicked
+        System.out.println(evt.paramString());
+        int value = jFileChooserSaveKey.showSaveDialog(this);
+        
+        if(value == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooserSaveKey.getSelectedFile();
+            jTextFieldPublicKey.setText(file.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButtonSaveKey1Clicked
+
+    //Botão de salvar arquivo da chave privada
+    private void jButtonSaveKey2Clicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveKey2Clicked
+        System.out.println(evt.paramString());
+        int value = jFileChooserSaveKey.showSaveDialog(this);
+        
+        if(value == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooserSaveKey.getSelectedFile();
+            jTextFieldPrivateKey.setText(file.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButtonSaveKey2Clicked
+
+    //Botão de gerar par de chaves
+    private void jButtonGenerateClicked(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerateClicked
+        System.out.println(evt.paramString());
+        String publicKey = jTextFieldPublicKey.getText();
+        String privateKey = jTextFieldPrivateKey.getText();
+        
+        //Aborta se um dos campos estiver em branco
+        if(publicKey.isBlank() || privateKey.isBlank()) {
+            showWarning("Favor preencher todos os campos antes de continuar...");
+            return;
+        }
+        
+        //TODO: Invocar geração de chaves aqui
+    }//GEN-LAST:event_jButtonGenerateClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCrypto;

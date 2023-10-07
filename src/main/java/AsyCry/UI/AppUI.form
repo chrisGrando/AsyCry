@@ -197,21 +197,33 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonOpenFile1Clicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonSaveFile1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSaveFile1Clicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonOpenKey1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonOpenKey1Clicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonCrypto">
               <Properties>
                 <Property name="text" type="java.lang.String" value="CRIPTOGRAFAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCryptoClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -320,21 +332,33 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonOpenFile2Clicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonSaveFile2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSaveFile2Clicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonOpenKey2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonOpenKey2Clicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonDecrypto">
               <Properties>
                 <Property name="text" type="java.lang.String" value="DECRIPTOGRAFAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDecryptoClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -424,16 +448,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSaveKey1Clicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonSaveKey2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="..."/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSaveKey2Clicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jButtonGenerate">
               <Properties>
                 <Property name="text" type="java.lang.String" value="GERAR CHAVES"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonGenerateClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
