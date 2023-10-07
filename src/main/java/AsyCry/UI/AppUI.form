@@ -121,9 +121,9 @@
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jTextFieldOutputFile1" pref="415" max="32767" attributes="0"/>
-                          <Component id="jTextFieldInputFile1" pref="415" max="32767" attributes="0"/>
-                          <Component id="jTextFieldKey1" pref="415" max="32767" attributes="0"/>
+                          <Component id="jTextFieldOutputFile1" pref="423" max="32767" attributes="0"/>
+                          <Component id="jTextFieldInputFile1" pref="423" max="32767" attributes="0"/>
+                          <Component id="jTextFieldKey1" pref="423" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -244,9 +244,9 @@
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jTextFieldOutputFile2" alignment="1" pref="415" max="32767" attributes="0"/>
-                          <Component id="jTextFieldInputFile2" alignment="1" pref="415" max="32767" attributes="0"/>
-                          <Component id="jTextFieldKey2" alignment="1" pref="415" max="32767" attributes="0"/>
+                          <Component id="jTextFieldOutputFile2" alignment="1" pref="423" max="32767" attributes="0"/>
+                          <Component id="jTextFieldInputFile2" alignment="1" pref="423" max="32767" attributes="0"/>
+                          <Component id="jTextFieldKey2" alignment="1" pref="423" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -359,30 +359,27 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabelPublicKey" pref="97" max="32767" attributes="0"/>
+                          <Component id="jLabelPrivateKey" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabelPrivateKey" min="-2" pref="90" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextFieldPrivateKey" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabelPublicKey" min="-2" pref="90" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextFieldPublicKey" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jTextFieldPublicKey" max="32767" attributes="0"/>
+                          <Component id="jTextFieldPrivateKey" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButtonSaveKey1" min="-2" pref="37" max="-2" attributes="0"/>
                           <Component id="jButtonSaveKey2" alignment="1" min="-2" pref="37" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
-                      <Component id="jButtonGenerate" pref="165" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="210" max="-2" attributes="0"/>
+                      <Component id="jButtonGenerate" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="211" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -401,9 +398,9 @@
                           <Component id="jTextFieldPrivateKey" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jButtonSaveKey2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                      <EmptySpace pref="26" max="32767" attributes="0"/>
                       <Component id="jButtonGenerate" min="-2" pref="35" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

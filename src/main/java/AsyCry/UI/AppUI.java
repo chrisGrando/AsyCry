@@ -1,10 +1,12 @@
 package AsyCry.UI;
 
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import javax.swing.JFrame;
 
 /**
  * Classe destinada ao front-end da aplicação.
- * @author chris
+ * @author chrisGrando
  */
 public class AppUI extends JFrame {
 
@@ -19,7 +21,65 @@ public class AppUI extends JFrame {
      * Executa a aplicação.
      */
     public void run() {
+        setAppIcon();
+        setAppFont();
         setVisible(true);
+    }
+    
+    /**
+     * Configura o ícone do aplicativo.
+     */
+    private void setAppIcon() {
+        Resources res = new Resources();
+        setIconImage(res.getIconFile());
+    }
+    
+    /**
+     * Configura a fonte do aplicativo.
+     */
+    private void setAppFont() {
+        Resources res = new Resources();
+        Font cousine = res.getCousineFont();
+        final float SIZE = 12f;
+        
+        //Aborta caso tenha ocorrido algum erro para carregar o arquivo
+        if(cousine == null)
+            return;
+        
+        //Registra a fonte
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(cousine);
+        
+        //Aplica a fonte nos elementos da janela
+        jButtonCrypto.setFont(cousine.deriveFont(Font.BOLD, SIZE + 2f));
+        jButtonDecrypto.setFont(cousine.deriveFont(Font.BOLD, SIZE + 2f));
+        jButtonGenerate.setFont(cousine.deriveFont(Font.BOLD, SIZE + 2f));
+        jButtonOpenFile1.setFont(cousine.deriveFont(Font.BOLD, SIZE));
+        jButtonOpenFile2.setFont(cousine.deriveFont(Font.BOLD, SIZE));
+        jButtonOpenKey1.setFont(cousine.deriveFont(Font.BOLD, SIZE));
+        jButtonOpenKey2.setFont(cousine.deriveFont(Font.BOLD, SIZE));
+        jButtonSaveFile1.setFont(cousine.deriveFont(Font.BOLD, SIZE));
+        jButtonSaveFile2.setFont(cousine.deriveFont(Font.BOLD, SIZE));
+        jButtonSaveKey1.setFont(cousine.deriveFont(Font.BOLD, SIZE));
+        jButtonSaveKey2.setFont(cousine.deriveFont(Font.BOLD, SIZE));
+        jLabelInput1.setFont(cousine.deriveFont(SIZE));
+        jLabelInput2.setFont(cousine.deriveFont(SIZE));
+        jLabelKey1.setFont(cousine.deriveFont(SIZE));
+        jLabelKey2.setFont(cousine.deriveFont(SIZE));
+        jLabelOutput1.setFont(cousine.deriveFont(SIZE));
+        jLabelOutput2.setFont(cousine.deriveFont(SIZE));
+        jLabelPrivateKey.setFont(cousine.deriveFont(SIZE));
+        jLabelPublicKey.setFont(cousine.deriveFont(SIZE));
+        jTabbedPane.setFont(cousine.deriveFont(SIZE));
+        jTextFieldInputFile1.setFont(cousine.deriveFont(SIZE));
+        jTextFieldInputFile2.setFont(cousine.deriveFont(SIZE));
+        jTextFieldKey1.setFont(cousine.deriveFont(SIZE));
+        jTextFieldKey2.setFont(cousine.deriveFont(SIZE));
+        jTextFieldOutputFile1.setFont(cousine.deriveFont(SIZE));
+        jTextFieldOutputFile2.setFont(cousine.deriveFont(SIZE));
+        jTextFieldPrivateKey.setFont(cousine.deriveFont(SIZE));
+        jTextFieldPublicKey.setFont(cousine.deriveFont(SIZE));
+        jTextAreaConsole.setFont(cousine.deriveFont(SIZE + 1f));
     }
 
     /**
@@ -122,9 +182,9 @@ public class AppUI extends JFrame {
                     .addComponent(jLabelKey1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCryptoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldOutputFile1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
-                    .addComponent(jTextFieldInputFile1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
-                    .addComponent(jTextFieldKey1, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
+                    .addComponent(jTextFieldOutputFile1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                    .addComponent(jTextFieldInputFile1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                    .addComponent(jTextFieldKey1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelCryptoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonOpenFile1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,9 +251,9 @@ public class AppUI extends JFrame {
                     .addComponent(jLabelKey2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDecryptoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldOutputFile2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
-                    .addComponent(jTextFieldInputFile2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
-                    .addComponent(jTextFieldKey2, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
+                    .addComponent(jTextFieldOutputFile2, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                    .addComponent(jTextFieldInputFile2, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
+                    .addComponent(jTextFieldKey2, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelDecryptoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonOpenFile2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,24 +309,22 @@ public class AppUI extends JFrame {
             jPanelKeysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelKeysLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanelKeysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelPublicKey, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                    .addComponent(jLabelPrivateKey, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelKeysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelKeysLayout.createSequentialGroup()
-                        .addComponent(jLabelPrivateKey, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPrivateKey))
-                    .addGroup(jPanelKeysLayout.createSequentialGroup()
-                        .addComponent(jLabelPublicKey, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldPublicKey)))
+                    .addComponent(jTextFieldPublicKey)
+                    .addComponent(jTextFieldPrivateKey))
                 .addGap(6, 6, 6)
                 .addGroup(jPanelKeysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonSaveKey1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSaveKey2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
             .addGroup(jPanelKeysLayout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(jButtonGenerate, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                .addGap(181, 181, 181))
+                .addGap(210, 210, 210)
+                .addComponent(jButtonGenerate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(211, 211, 211))
         );
         jPanelKeysLayout.setVerticalGroup(
             jPanelKeysLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,9 +339,9 @@ public class AppUI extends JFrame {
                     .addComponent(jLabelPrivateKey, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldPrivateKey, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSaveKey2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jButtonGenerate, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(23, 23, 23))
         );
 
         jTabbedPane.addTab("Gerar Chaves", jPanelKeys);
