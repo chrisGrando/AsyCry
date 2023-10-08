@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- * Classe destinada ao front-end da aplicação.
+ * Classe destinada ao front-end e back-end da aplicação.
  * @author chrisGrando
  */
 public class AppUI extends JFrame {
@@ -27,6 +27,7 @@ public class AppUI extends JFrame {
         setAppIcon();
         setAppFont();
         setCurrentDirectory();
+        ConsoleText.setConsole(jTextAreaConsole);
         setVisible(true);
     }
     
@@ -534,6 +535,10 @@ public class AppUI extends JFrame {
         }
         
         //TODO: Invocar criptografia aqui
+        ConsoleText.updateConsole("*** Criptografando dados ***");
+        ConsoleText.updateConsole("Arquivo original: " + oldFile);
+        ConsoleText.updateConsole("Arquivo criptografado: " + newFile);
+        ConsoleText.updateConsole("Chave pública: " + key);
     }//GEN-LAST:event_jButtonCryptoClicked
 
     //Botão de abrir arquivo para decriptografar
@@ -583,6 +588,11 @@ public class AppUI extends JFrame {
         }
         
         //TODO: Invocar decriptografia aqui
+        ConsoleText.updateConsole("*** Decriptografando dados ***");
+        ConsoleText.updateConsole("Arquivo original: " + oldFile);
+        ConsoleText.updateConsole("Arquivo decriptografado: " + newFile);
+        ConsoleText.updateConsole("Chave privada: " + key);
+        
     }//GEN-LAST:event_jButtonDecryptoClicked
 
     //Botão de salvar arquivo da chave pública
@@ -620,6 +630,9 @@ public class AppUI extends JFrame {
         }
         
         //TODO: Invocar geração de chaves aqui
+        ConsoleText.updateConsole("*** Gerando par de chaves ***");
+        ConsoleText.updateConsole("Chave pública: " + publicKey);
+        ConsoleText.updateConsole("Chave privada: " + privateKey);
     }//GEN-LAST:event_jButtonGenerateClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
