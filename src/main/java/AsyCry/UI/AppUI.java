@@ -1,5 +1,6 @@
 package AsyCry.UI;
 
+import AsyCry.Crypto.MyKeyPair;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
@@ -604,7 +605,13 @@ public class AppUI extends JFrame {
         
         if(value == JFileChooser.APPROVE_OPTION) {
             File file = jFileChooserSaveKey.getSelectedFile();
-            jTextFieldPublicKey.setText(file.getAbsolutePath());
+            String path = file.getAbsolutePath();
+            
+            //Insere ".dat" no nome do arquivo se não houver extensão
+            if(!path.contains("."))
+                path += ".dat";
+            
+            jTextFieldPublicKey.setText(path);
         }
     }//GEN-LAST:event_jButtonSaveKey1Clicked
 
@@ -615,7 +622,13 @@ public class AppUI extends JFrame {
         
         if(value == JFileChooser.APPROVE_OPTION) {
             File file = jFileChooserSaveKey.getSelectedFile();
-            jTextFieldPrivateKey.setText(file.getAbsolutePath());
+            String path = file.getAbsolutePath();
+            
+            //Insere ".dat" no nome do arquivo se não houver extensão
+            if(!path.contains("."))
+                path += ".dat";
+            
+            jTextFieldPrivateKey.setText(path);
         }
     }//GEN-LAST:event_jButtonSaveKey2Clicked
 
@@ -631,10 +644,16 @@ public class AppUI extends JFrame {
             return;
         }
         
-        //TODO: Invocar geração de chaves aqui
+        //Log
         ConsoleText.updateConsole("*** Gerando par de chaves ***");
         ConsoleText.updateConsole("Chave pública: " + publicKey);
         ConsoleText.updateConsole("Chave privada: " + privateKey);
+        
+        //Gera par de chaves
+        MyKeyPair mkp = new MyKeyPair();
+        mkp.setPublicKeyPath(publicKey);
+        mkp.setPrivateKeyPath(privateKey);
+        mkp.generateMyKeys();
     }//GEN-LAST:event_jButtonGenerateClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
