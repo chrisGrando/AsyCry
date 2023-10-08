@@ -177,10 +177,12 @@ public class AppUI extends JFrame {
 
         jFileChooserOpenKey.setCurrentDirectory(null);
         jFileChooserOpenKey.setDialogTitle("Abrir chave");
+        jFileChooserOpenKey.setFileFilter(new KeyFilter());
 
         jFileChooserSaveKey.setDialogType(javax.swing.JFileChooser.SAVE_DIALOG);
         jFileChooserSaveKey.setCurrentDirectory(null);
         jFileChooserSaveKey.setDialogTitle("Salvar chave");
+        jFileChooserSaveKey.setFileFilter(new KeyFilter());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Criptografia Assimétrica");
