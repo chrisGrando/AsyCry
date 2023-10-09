@@ -78,12 +78,14 @@ public class MyKeyPair {
             File publicKeyFile = new File(publicKeyPath);
             FileOutputStream outPublicKey = new FileOutputStream(publicKeyFile);
             outPublicKey.write(publicKey.getEncoded());
+            outPublicKey.close();
             ConsoleText.updateConsole("Chave pública salva em: " + publicKeyFile.getAbsolutePath());
             
             //Cria arquivo da chave privada
             File privateKeyFile = new File(privateKeyPath);
             FileOutputStream outPrivateKey = new FileOutputStream(privateKeyFile);
             outPrivateKey.write(privateKey.getEncoded());
+            outPrivateKey.close();
             ConsoleText.updateConsole("Chave privada salva em: " + privateKeyFile.getAbsolutePath());
         }
         catch(NoSuchAlgorithmException | FileNotFoundException error) {

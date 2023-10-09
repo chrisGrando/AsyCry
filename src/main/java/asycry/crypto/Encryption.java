@@ -41,6 +41,7 @@ public class Encryption {
             FileInputStream fis = new FileInputStream(keyFile);
             ConsoleText.updateConsole("Lendo a chave...");
             byte[] keyData = fis.readAllBytes();
+            fis.close();
             
             //Armazena a chave
             ConsoleText.updateConsole("Armazenando a chave...");
@@ -127,8 +128,13 @@ public class Encryption {
                 index += SECTION + 1;
             }
             
+            //Fim
             ConsoleText.updateConsole("Pronto!");
             ConsoleText.updateConsole("Arquivo criptografado salvo em: " + outputFile.getAbsolutePath());
+            
+            //Fecha arquivos
+            input.close();
+            output.close();
         }
         catch(FileNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException error) {
             String msg = "Não foi possível realizar a criptografia...";
