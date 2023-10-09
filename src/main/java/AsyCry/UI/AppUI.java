@@ -1,5 +1,6 @@
 package AsyCry.UI;
 
+import AsyCry.Crypto.Encryption;
 import AsyCry.Crypto.MyKeyPair;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
@@ -537,11 +538,18 @@ public class AppUI extends JFrame {
             return;
         }
         
-        //TODO: Invocar criptografia aqui
+        //Log
         ConsoleText.updateConsole("*** Criptografando dados ***");
-        ConsoleText.updateConsole("Arquivo original: " + oldFile);
-        ConsoleText.updateConsole("Arquivo criptografado: " + newFile);
-        ConsoleText.updateConsole("Chave pública: " + key);
+        ConsoleText.updateConsole("Arquivo original: " + (new File(oldFile)).getName());
+        ConsoleText.updateConsole("Arquivo criptografado: " + (new File(newFile)).getName());
+        ConsoleText.updateConsole("Chave pública: " + (new File(key)).getName());
+        
+        //Realiza a criptografia
+        Encryption encryption = new Encryption();
+        encryption.setInputFile(oldFile);
+        encryption.setOutputFile(newFile);
+        encryption.loadPublicKey(key);
+        encryption.runEncryption();
     }//GEN-LAST:event_jButtonCryptoClicked
 
     //Botão de abrir arquivo para decriptografar
@@ -592,9 +600,9 @@ public class AppUI extends JFrame {
         
         //TODO: Invocar decriptografia aqui
         ConsoleText.updateConsole("*** Decriptografando dados ***");
-        ConsoleText.updateConsole("Arquivo original: " + oldFile);
-        ConsoleText.updateConsole("Arquivo decriptografado: " + newFile);
-        ConsoleText.updateConsole("Chave privada: " + key);
+        ConsoleText.updateConsole("Arquivo original: " + (new File(oldFile)).getName());
+        ConsoleText.updateConsole("Arquivo criptografado: " + (new File(newFile)).getName());
+        ConsoleText.updateConsole("Chave pública: " + (new File(key)).getName());
         
     }//GEN-LAST:event_jButtonDecryptoClicked
 
@@ -646,8 +654,8 @@ public class AppUI extends JFrame {
         
         //Log
         ConsoleText.updateConsole("*** Gerando par de chaves ***");
-        ConsoleText.updateConsole("Chave pública: " + publicKey);
-        ConsoleText.updateConsole("Chave privada: " + privateKey);
+        ConsoleText.updateConsole("Chave pública: " + (new File(publicKey)).getName());
+        ConsoleText.updateConsole("Chave privada: " + (new File(privateKey)).getName());
         
         //Gera par de chaves
         MyKeyPair mkp = new MyKeyPair();

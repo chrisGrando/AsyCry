@@ -10,6 +10,7 @@ import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.SecureRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -52,11 +53,14 @@ public class MyKeyPair {
         }
         
         try {
+            //Cria gerador de valores aleatórios
+            SecureRandom secureRandom = new SecureRandom();
+            
             //Cria um gerador de par de chaves
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(ALGORITHM);
 
-            //Define o tamanho das chaves
-            keyPairGenerator.initialize(KEY_SIZE);
+            //Define o tamanho e aleatoridade das chaves
+            keyPairGenerator.initialize(KEY_SIZE, secureRandom);
 
             //Gera um par de chaves
             ConsoleText.updateConsole("Gerando par de chaves...");
@@ -83,14 +87,16 @@ public class MyKeyPair {
             ConsoleText.updateConsole("Chave privada salva em: " + privateKeyFile.getAbsolutePath());
         }
         catch(NoSuchAlgorithmException | FileNotFoundException error) {
-            String msg = "Erro! Não foi possível gerar o par de chaves...";
+            String msg = "Não foi possível salvar o par de chaves...";
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, msg, error);
             ConsoleText.updateConsole(msg);
+            ConsoleText.updateConsole(error.toString());
         }
         catch(IOException error) {
-            String msg = "Erro! Não foi possível gravar o par de chaves...";
+            String msg = "Não foi possível gravar o par de chaves...";
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, msg, error);
             ConsoleText.updateConsole(msg);
+            ConsoleText.updateConsole(error.toString());
         }
     }
     
