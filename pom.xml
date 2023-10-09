@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <name>Asymmetric Cryptography</name>
     <groupId>io.projects.araucaria</groupId>
-    <artifactId>AsymmetricCryptography</artifactId>
+    <artifactId>AsyCry</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
     <properties>
@@ -11,7 +11,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <exec.mainClass>AsyCry.Main</exec.mainClass>
+        <exec.mainClass>asycry.Main</exec.mainClass>
     </properties>
     <build>
         <finalName>${project.artifactId}</finalName>

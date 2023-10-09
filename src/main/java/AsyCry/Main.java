@@ -25,9 +25,9 @@
 * For more information, please refer to <https://unlicense.org>
 */
 
-package AsyCry;
+package asycry;
 
-import AsyCry.UI.AppUI;
+import asycry.ui.AppUI;
 
 /**
  * Classe destinada para inicialização básica.

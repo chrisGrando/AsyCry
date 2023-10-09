@@ -1,6 +1,6 @@
-package AsyCry.Crypto;
+package asycry.crypto;
 
-import AsyCry.UI.ConsoleText;
+import asycry.ui.ConsoleText;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

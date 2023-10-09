@@ -1,4 +1,4 @@
-package AsyCry.UI;
+package asycry.ui;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

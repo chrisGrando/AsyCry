@@ -1,7 +1,7 @@
-package AsyCry.UI;
+package asycry.ui;
 
-import AsyCry.Crypto.Encryption;
-import AsyCry.Crypto.MyKeyPair;
+import asycry.crypto.Encryption;
+import asycry.crypto.MyKeyPair;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.io.File;

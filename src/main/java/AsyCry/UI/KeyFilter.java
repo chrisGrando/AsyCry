@@ -1,4 +1,4 @@
-package AsyCry.UI;
+package asycry.ui;
 
 import java.io.File;
 import javax.swing.filechooser.FileFilter;

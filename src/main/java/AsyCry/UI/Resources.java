@@ -1,4 +1,4 @@
-package AsyCry.UI;
+package asycry.ui;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -21,7 +21,7 @@ public class Resources {
      */
     public Image getIconFile() {
         Image icon;
-        final String PATH = "/AsyCry/resources/padlock.png";
+        final String PATH = "/asycry/resources/padlock.png";
         
         //Acessa arquivo no caminho especificado
         icon = Toolkit.getDefaultToolkit().getImage(
@@ -38,7 +38,7 @@ public class Resources {
      */
     public Font getCousineFont() {
         Font fontFile = null;
-        final String PATH = "/AsyCry/resources/Cousine.ttf";
+        final String PATH = "/asycry/resources/Cousine.ttf";
         
         //Carrega o arquivo da fonte no caminho especificado
         try {
