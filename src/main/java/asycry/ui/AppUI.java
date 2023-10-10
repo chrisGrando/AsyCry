@@ -1,14 +1,20 @@
 package asycry.ui;
 
+import asycry.Main;
 import asycry.crypto.Decryption;
 import asycry.crypto.Encryption;
 import asycry.crypto.MyKeyPair;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Classe destinada ao front-end e back-end da aplicação.
@@ -27,11 +33,29 @@ public class AppUI extends JFrame {
      * Executa a aplicação.
      */
     public void run() {
+        //Configura o ambiente "Metal"
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Metal".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException error) {
+            Logger.getLogger(AppUI.class.getName()).log(Level.SEVERE, error.getMessage(), error);
+        }
+        
+        //Customiza elementos da janela
         setAppIcon();
         setAppFont();
         setCurrentDirectory();
+        setCustomTitle();
         ConsoleText.setConsole(jTextAreaConsole);
-        setVisible(true);
+        
+        //Cria e exibe a janela
+        EventQueue.invokeLater(() -> {
+            setVisible(true);
+        });
     }
     
     /**
@@ -102,6 +126,21 @@ public class AppUI extends JFrame {
         jFileChooserOpenKey.setCurrentDirectory(DIR);
         jFileChooserOutputFile.setCurrentDirectory(DIR);
         jFileChooserSaveKey.setCurrentDirectory(DIR);
+    }
+    
+    /**
+     * Configura título da janela com nome e versão do aplicativo.
+     */
+    private void setCustomTitle() {
+        Package mainPackage = Main.class.getPackage();
+        String appName = mainPackage.getImplementationTitle();
+        String appVersion = mainPackage.getImplementationVersion();
+        
+        //Aborta se o nome ou versão do app for nulo
+        if(appName == null || appVersion == null)
+            return;
+        
+        setTitle(appName + " ~ v" + appVersion);
     }
     
     /**
