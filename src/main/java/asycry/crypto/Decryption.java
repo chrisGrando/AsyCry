@@ -9,9 +9,9 @@ import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.NoSuchAlgorithmException;
-import java.security.PublicKey;
+import java.security.PrivateKey;
 import java.security.spec.InvalidKeySpecException;
-import java.security.spec.X509EncodedKeySpec;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.crypto.BadPaddingException;
@@ -20,21 +20,21 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 /**
- * Classe destinada para encriptografar arquivos.
+ * Classe destinada para decriptografar arquivos.
  * @author chrisGrando
  */
-public class Encryption {
+public class Decryption {
     private final String ALGORITHM = "RSA";
-    private PublicKey publicKey = null;
+    private PrivateKey privateKey = null;
     private File inputFile = null;
     private File outputFile = null;
     
     /**
-     * Carrega a chave pública de um arquivo e armazena seu conteúdo.
+     * Carrega a chave privada de um arquivo e armazena seu conteúdo.
      * @param path
      * Local da chave.
      */
-    public void loadPublicKey(String path) {
+    public void loadPrivateKey(String path) {
         try {
             //Lê a chave
             File keyFile = new File(path);
@@ -45,9 +45,9 @@ public class Encryption {
             
             //Armazena a chave
             ConsoleText.updateConsole("Armazenando a chave...");
-            X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyData);
+            PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyData);
             KeyFactory keyFactory = KeyFactory.getInstance(ALGORITHM);
-            publicKey = keyFactory.generatePublic(keySpec);
+            privateKey = keyFactory.generatePrivate(keySpec);
         }
         catch(FileNotFoundException | NoSuchAlgorithmException | InvalidKeySpecException error) {
             String msg = "Não foi possível carregar a chave...";
@@ -64,7 +64,7 @@ public class Encryption {
     }
     
     /**
-     * Configura o arquivo de entrada para criptografar.
+     * Configura o arquivo de entrada para decriptografar.
      * @param path
      * Local do arquivo.
      */
@@ -74,7 +74,7 @@ public class Encryption {
     }
     
     /**
-     * Configura o arquivo de saída com o conteúdo criptografado.
+     * Configura o arquivo de saída com o conteúdo decriptografado.
      * @param path
      * Local do arquivo.
      */
@@ -84,11 +84,11 @@ public class Encryption {
     }
     
     /**
-     * Executa a encriptação do arquivo.
+     * Executa a decriptação do arquivo.
      */
-    public void runEncryption() {
+    public void runDecryption() {
         //Aborta se os arquivos necessários não foram informados
-        if(publicKey == null || inputFile == null || outputFile == null) {
+        if(privateKey == null || inputFile == null || outputFile == null) {
             System.out.println("Arquivos insuficientes...");
             return;
         }
@@ -102,13 +102,13 @@ public class Encryption {
             
             //Inicializa o método de criptografia
             Cipher cipher = Cipher.getInstance(ALGORITHM);
-            cipher.init(Cipher.ENCRYPT_MODE, publicKey);
+            cipher.init(Cipher.DECRYPT_MODE, privateKey);
             
-            //Encriptografa o conteúdo do arquivo
-            ConsoleText.updateConsole("Lendo o arquivo original...");
-            byte[] originalData = input.readAllBytes();
-            final int SIZE = originalData.length;
-            final int SECTION = 245;
+            //Decriptografa o conteúdo do arquivo
+            ConsoleText.updateConsole("Lendo o arquivo criptografado...");
+            byte[] cryptoData = input.readAllBytes();
+            final int SIZE = cryptoData.length;
+            final int SECTION = 256;
             int index = 0;
             
             while(index <= (SIZE - 1)) {
@@ -117,27 +117,27 @@ public class Encryption {
                 if((SIZE - 1) - (index + SECTION) < 0)
                     max = SIZE - index;
                 
-                //Criptografia
-                ConsoleText.updateConsole("Criptografando posição " + Integer.toString(index) + " até " + Integer.toString(index + max) + "...");
-                byte[] cryptoData = cipher.doFinal(originalData, index, max);
+                //Decriptografia
+                ConsoleText.updateConsole("Decriptografando posição " + Integer.toString(index) + " até " + Integer.toString(index + max) + "...");
+                byte[] decryptoData = cipher.doFinal(cryptoData, index, max);
                 
                 //Gravação
                 ConsoleText.updateConsole("Gravando dados...");
-                output.write(cryptoData);
+                output.write(decryptoData);
                 
-                index += SECTION + 1;
+                index += SECTION;
             }
             
             //Fim
             ConsoleText.updateConsole("Pronto!");
-            ConsoleText.updateConsole("Arquivo criptografado salvo em: " + outputFile.getAbsolutePath());
+            ConsoleText.updateConsole("Arquivo decriptografado salvo em: " + outputFile.getAbsolutePath());
             
             //Fecha arquivos
             input.close();
             output.close();
         }
         catch(FileNotFoundException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException error) {
-            String msg = "Não foi possível realizar a criptografia...";
+            String msg = "Não foi possível realizar a decriptografia...";
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, msg, error);
             ConsoleText.updateConsole(msg);
             ConsoleText.updateConsole(error.toString());

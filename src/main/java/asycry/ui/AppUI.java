@@ -1,5 +1,6 @@
 package asycry.ui;
 
+import asycry.crypto.Decryption;
 import asycry.crypto.Encryption;
 import asycry.crypto.MyKeyPair;
 import java.awt.Font;
@@ -598,12 +599,18 @@ public class AppUI extends JFrame {
             return;
         }
         
-        //TODO: Invocar decriptografia aqui
+        //Log
         ConsoleText.updateConsole("*** Decriptografando dados ***");
         ConsoleText.updateConsole("Arquivo original: " + (new File(oldFile)).getName());
         ConsoleText.updateConsole("Arquivo criptografado: " + (new File(newFile)).getName());
         ConsoleText.updateConsole("Chave pública: " + (new File(key)).getName());
         
+        //Realiza a decriptografia
+        Decryption decryption = new Decryption();
+        decryption.setInputFile(oldFile);
+        decryption.setOutputFile(newFile);
+        decryption.loadPrivateKey(key);
+        decryption.runDecryption();
     }//GEN-LAST:event_jButtonDecryptoClicked
 
     //Botão de salvar arquivo da chave pública
