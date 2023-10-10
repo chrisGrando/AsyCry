@@ -125,7 +125,7 @@ public class Encryption {
                 ConsoleText.updateConsole("Gravando dados...");
                 output.write(cryptoData);
                 
-                index += SECTION + 1;
+                index += SECTION;
             }
             
             //Fim
