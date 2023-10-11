@@ -662,7 +662,7 @@ public class AppUI extends JFrame {
             String path = file.getAbsolutePath();
             
             //Insere ".dat" no nome do arquivo se não houver extensão
-            if(!path.contains("."))
+            if(!file.getName().contains("."))
                 path += ".dat";
             
             jTextFieldPublicKey.setText(path);
@@ -679,7 +679,7 @@ public class AppUI extends JFrame {
             String path = file.getAbsolutePath();
             
             //Insere ".dat" no nome do arquivo se não houver extensão
-            if(!path.contains("."))
+            if(!file.getName().contains("."))
                 path += ".dat";
             
             jTextFieldPrivateKey.setText(path);
