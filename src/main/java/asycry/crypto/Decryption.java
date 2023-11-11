@@ -100,7 +100,7 @@ public class Decryption {
             //Arquivo de saída
             FileOutputStream output = new FileOutputStream(outputFile);
             
-            //Inicializa o método de criptografia
+            //Inicializa o método de decriptografia
             Cipher cipher = Cipher.getInstance(ALGORITHM);
             cipher.init(Cipher.DECRYPT_MODE, privateKey);
             

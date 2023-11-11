@@ -42,6 +42,7 @@ public class ConsoleText {
             String msg = getCurrentTime() + txt + "\n";
             System.out.print(msg);
             console.append(msg);
+            console.setCaretPosition(console.getText().length());
         }
     }
     

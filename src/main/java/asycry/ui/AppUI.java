@@ -8,6 +8,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.io.File;
+import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -492,6 +493,7 @@ public class AppUI extends JFrame {
         jTextAreaConsole.setBackground(new java.awt.Color(241, 241, 241));
         jTextAreaConsole.setColumns(20);
         jTextAreaConsole.setRows(5);
+        jTextAreaConsole.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPaneConsole.setViewportView(jTextAreaConsole);
 
         javax.swing.GroupLayout jPanelConsoleLayout = new javax.swing.GroupLayout(jPanelConsole);
@@ -578,6 +580,9 @@ public class AppUI extends JFrame {
             return;
         }
         
+        //Desativa temporariamente o botão
+        jButtonCrypto.setEnabled(false);
+        
         //Log
         ConsoleText.updateConsole("*** Criptografando dados ***");
         ConsoleText.updateConsole("Arquivo original: " + (new File(oldFile)).getName());
@@ -585,11 +590,17 @@ public class AppUI extends JFrame {
         ConsoleText.updateConsole("Chave pública: " + (new File(key)).getName());
         
         //Realiza a criptografia
-        Encryption encryption = new Encryption();
-        encryption.setInputFile(oldFile);
-        encryption.setOutputFile(newFile);
-        encryption.loadPublicKey(key);
-        encryption.runEncryption();
+        CompletableFuture.runAsync(() -> {
+            Encryption encryption = new Encryption();
+            encryption.setInputFile(oldFile);
+            encryption.setOutputFile(newFile);
+            encryption.loadPublicKey(key);
+            encryption.runEncryption();
+        })
+        .thenRunAsync(() -> {
+            //Reativa o botão
+            jButtonCrypto.setEnabled(true);
+        });
     }//GEN-LAST:event_jButtonCryptoClicked
 
     //Botão de abrir arquivo para decriptografar
@@ -638,6 +649,9 @@ public class AppUI extends JFrame {
             return;
         }
         
+        //Desativa temporariamente o botão
+        jButtonDecrypto.setEnabled(false);
+        
         //Log
         ConsoleText.updateConsole("*** Decriptografando dados ***");
         ConsoleText.updateConsole("Arquivo original: " + (new File(oldFile)).getName());
@@ -645,11 +659,17 @@ public class AppUI extends JFrame {
         ConsoleText.updateConsole("Chave pública: " + (new File(key)).getName());
         
         //Realiza a decriptografia
-        Decryption decryption = new Decryption();
-        decryption.setInputFile(oldFile);
-        decryption.setOutputFile(newFile);
-        decryption.loadPrivateKey(key);
-        decryption.runDecryption();
+        CompletableFuture.runAsync(() -> {
+            Decryption decryption = new Decryption();
+            decryption.setInputFile(oldFile);
+            decryption.setOutputFile(newFile);
+            decryption.loadPrivateKey(key);
+            decryption.runDecryption();
+        })
+        .thenRunAsync(() -> {
+            //Reativa o botão
+            jButtonDecrypto.setEnabled(true);
+        });
     }//GEN-LAST:event_jButtonDecryptoClicked
 
     //Botão de salvar arquivo da chave pública
@@ -698,16 +718,24 @@ public class AppUI extends JFrame {
             return;
         }
         
+        //Desativa temporariamente o botão
+        jButtonGenerate.setEnabled(false);
+        
         //Log
         ConsoleText.updateConsole("*** Gerando par de chaves ***");
         ConsoleText.updateConsole("Chave pública: " + (new File(publicKey)).getName());
         ConsoleText.updateConsole("Chave privada: " + (new File(privateKey)).getName());
         
         //Gera par de chaves
-        MyKeyPair mkp = new MyKeyPair();
-        mkp.setPublicKeyPath(publicKey);
-        mkp.setPrivateKeyPath(privateKey);
-        mkp.generateMyKeys();
+        CompletableFuture.runAsync(() -> {
+            MyKeyPair mkp = new MyKeyPair();
+            mkp.setPublicKeyPath(publicKey);
+            mkp.setPrivateKeyPath(privateKey);
+            mkp.generateMyKeys();
+        })
+        .thenRunAsync(() -> {
+            jButtonGenerate.setEnabled(true);
+        });
     }//GEN-LAST:event_jButtonGenerateClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
